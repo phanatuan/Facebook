@@ -15,6 +15,8 @@ class StatusesController < ApplicationController
   # GET /statuses/new
   def new
     @status = Status.new
+    @status.user_id = current_user.id # You need to add this line
+
   end
 
   # GET /statuses/1/edit
