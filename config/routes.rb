@@ -1,7 +1,19 @@
 Facebook::Application.routes.draw do
   devise_for :users
+
+  devise_scope :user do
+    get "register", to: "devise/registrations#new", as: :register
+    get "sign_in", to: "devise/sessions#new", as: :sign_in
+    get "sign_out", to: "devise/sessions#destroy", as: :sign_out
+    get "user_edit", to: "devise/registrations#edit", as: :user_edit
+
+    
+
+  end
+
   resources :statuses
 
+  get 'feed', to: 'statuses#index', as: :feed
   root :to => "statuses#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
